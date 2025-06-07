@@ -1,9 +1,5 @@
 {
   "build": {
-    "env": {},
-    "commands": [
-      "npm ci",
-      "npm run build"
-    ]
+    "command": "npm ci && npm run build"
   }
 }
