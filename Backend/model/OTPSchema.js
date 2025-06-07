@@ -32,7 +32,7 @@ otpSchema.pre("save", async function (next) {
 
     await sendEmail(
       this.Email,
-      "Verify your email - Cloud Computing Cell",
+      "Verify your email - ECOMMERCE",
       null, 
       htmlTemplate 
     );
