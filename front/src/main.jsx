@@ -5,7 +5,7 @@ import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
-import rootReducer from './reducer/index.js'
+import rootReducer from './Reducer/index.js'
 import toast, { Toaster } from 'react-hot-toast';
 
 
