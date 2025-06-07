@@ -39,15 +39,15 @@ export default function Category() {
     fetchInterests();
   }, []);
 
-  
- const toggleInterest = async (id) => {
+
+const toggleInterest = async (id) => {
   const updatedInterests = interests.map(item =>
     item._id === id ? { ...item, selected: !item.selected } : item
   );
   setInterests(updatedInterests);
 
   const selected = updatedInterests.filter(item => item.selected).map(item => item._id);
-  const toastId = toast.loading("Saving interests...");
+  const toastId = toast.loading("Updating interests...");
 
   try {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -58,13 +58,19 @@ export default function Category() {
       interests: selected,
     });
 
-    console.log(response);
-    toast.success("Interests saved successfully", { id: toastId });
+
+    const toggledItem = updatedInterests.find(item => item._id === id);
+    if (toggledItem.selected) {
+      toast.success("Interest added", { id: toastId });
+    } else {
+      toast.success("Interest removed", { id: toastId });
+    }
   } catch (error) {
     const errorMsg = error?.response?.data?.message || "Error while saving interests";
     toast.error(errorMsg, { id: toastId });
   }
 };
+
 
 
   const totalPages = Math.ceil(interests.length / itemsPerPage);

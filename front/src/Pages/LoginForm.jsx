@@ -21,10 +21,8 @@ const LoginForm = () => {
      const toastId = toast.loading("Logging in...");
     try{
     const response = await apiConnect("POST" , login.LOGIN_API , formData)
-    console.log(response);
     if (response?.data?.success == true) {
       const token = response.data.token;
-      console.log(token);
       
       dispatch(setToken(token));
       localStorage.setItem('token', JSON.stringify(token));
@@ -81,7 +79,7 @@ const LoginForm = () => {
           {/* Create Button */}
           <button
             type="submit"
-            className="w-full mt-5 bg-black text-white font-medium py-3 rounded-md hover:bg-gray-800 transition duration-300"
+            className="w-full mt-5 cursor-pointer bg-black text-white font-medium py-3 rounded-md hover:bg-gray-800 transition duration-300"
           >
             LOGIN
           </button>
@@ -92,9 +90,9 @@ const LoginForm = () => {
         <hr className="mt-8 text-[#C1C1C1]" />
 
         {/* Login redirect */}
-        <p className="text-[16px] text-center text-[#333333] mt-6">
+        <p className="text-[16px]  text-center text-[#333333] mt-6">
          Don't Have an Account?{" "}
-          <Link to="/"  className="font-semibold text-black hover:underline">
+          <Link to="/"  className="font-semibold  cursor-pointer text-black hover:underline">
             SIGNUP
           </Link>
         </p>

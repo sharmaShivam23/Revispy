@@ -5,15 +5,42 @@ import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import { Link } from 'react-router-dom';
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { MdOutlineMenu } from "react-icons/md";
+import { setLogout } from '../../Slices/authSlice';
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import toast from 'react-hot-toast';
 
 const Navbar = () => {
+
+ const user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  function handleClick() {
+    dispatch(setLogout());
+    localStorage.removeItem('token');
+    toast.success("Logout Successful");
+    navigate('/login');
+  }
   return (
    <nav className='flex flex-col'>
 
     <div className="top font-semibold text-xs  sm:text-lg max-w-[94vw] mt-2  m-auto h-[36px] flex justify-center sm:justify-end w-full gap-4 items-center">
       <p>Help</p>
-      <p>Orders & Returns</p>
-      <p>Hi , John</p>
+      {user ? 
+       <p>Hi , {user?.Name || "John"}</p>
+      :
+        <p>Orders & Returns</p>
+      }
+    
+      {
+        localStorage.getItem('token')
+         ? 
+         <p onClick={handleClick} className='text-xl cursor-pointer font-bold'>Logout</p> 
+         :
+        <p>Hi , {user?.Name || "John"}</p>
+      }
+      
     </div>
 
     <div className="bottom max-w-[94vw]  w-full m-auto h-[64px] flex justify-between items-center">

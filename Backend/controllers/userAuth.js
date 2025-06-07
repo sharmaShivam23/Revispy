@@ -181,7 +181,7 @@ exports.signUp = async (req, res) => {
     }
 
     const signupTemplate = fs.readFileSync(templatePath, 'utf8');
-    const subject = "Welcome to cloud computing cell!";
+    const subject = "Welcome to ECOMMERCE!";
     const text = `Hi ${Name}, Congratulations! Signup successful.`;
     const html  = signupTemplate.replace(/{{\s*Name\s*}}/g, Name)
 
