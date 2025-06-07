@@ -1,9 +1,0 @@
-{
-  "build": {
-    "env": {},
-    "commands": [
-      "npm ci",
-      "npm run build"
-    ]
-  }
-}
