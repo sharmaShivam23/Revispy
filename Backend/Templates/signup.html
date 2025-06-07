@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="supported-color-schemes" content="light dark" />
+  <style>
+    :root {
+      color-scheme: light dark;
+      supported-color-schemes: light dark;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+      color: #000000;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      background-color: #f9f9f9;
+      border: 1px solid #dddddd;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .content {
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    .content h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333333;
+    }
+
+    .highlight {
+      color: #007BFF;
+      font-weight: bold;
+    }
+
+    .footer {
+      background-color: #f1f1f1;
+      text-align: center;
+      padding: 10px 20px;
+      font-size: 14px;
+      color: #555555;
+    }
+
+    a {
+      color: #007BFF;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #121212;
+        color: #e0e0e0;
+      }
+
+      .container {
+        background-color: #1e1e1e;
+        border-color: #333333;
+      }
+
+      .content h1 {
+        color: #ffffff;
+      }
+
+      .footer {
+        background-color: #1e1e1e;
+        color: #bdbdbd;
+      }
+    }
+
+    @media only screen and (max-width: 600px) {
+      .container {
+        margin: 10px;
+      }
+
+      .content h1 {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="content">
+      <h1>Signup Successful</h1>
+      <p>Hi <span class="highlight">{{ Name }}</span>,</p>
+      <p>Thank you for registering with us. We're excited to have you on board!</p>
+      <p>If you have any questions or need assistance, feel free to contact our support team.</p>
+      <p>Best regards,<br>
+      The Team</p>
+    </div>
+    <div class="footer">
+      &copy; 2025 Your Company Name. All rights reserved.
+    </div>
+  </div>
+</body>
+</html>
