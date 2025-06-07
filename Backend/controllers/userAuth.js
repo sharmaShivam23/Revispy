@@ -62,7 +62,6 @@ exports.sendOTP = async(req,res) => {
  
  const otpPayload = {Email,otp}
  const otpresult = await OTP.create(otpPayload)
- console.log(otpresult);
  
 
  res.status(200).json({
