@@ -65,6 +65,7 @@ const Navbar = () => {
             name="opt"
             id="op"
           >
+             <option className="font-bold italic" value="">Select an option</option>
             <option className="font-bold" onClick={handleClick} value="logout">
               Logout
             </option>
