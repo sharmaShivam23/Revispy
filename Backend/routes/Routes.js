@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const rateLimit = require("express-rate-limit");
-const { signUp , login } = require("../controllers/userAuth");
+const { signUp , login , deleteAccount   } = require("../controllers/userAuth");
 const { limiter } = require("../controllers/userAuth");
 const { sendOTP } = require("../controllers/userAuth");
 // const categoryRoutes = require("./category");
@@ -15,6 +15,8 @@ router.post("/login" , login);
 router.get('/get-categories', categoryController.getAllCategories);
 router.post('/create-categories', categoryController.createCategory);
 router.put("/user/interests", updateUserInterests);
+router.delete("/delete-account" , deleteAccount)
+
 
 
 

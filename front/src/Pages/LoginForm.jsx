@@ -32,6 +32,8 @@ const LoginForm = () => {
     navigate("/category")
     }
     catch(error){
+      console.log(error);
+      
       const errorMsg = error?.response?.data?.message || "Error while logging in";
     toast.error(errorMsg, { id: toastId });
     }

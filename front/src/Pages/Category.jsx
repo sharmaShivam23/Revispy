@@ -87,6 +87,7 @@ const toggleInterest = async (id) => {
       <div className="border-t border-b py-4">
         <h2 className="font-semibold mb-2 text-lg text-gray-800">My saved interests:</h2>
         <ul className="space-y-2">
+          {paginatedInterests.length == 0 && <p className='text-bold text-2xl flex justify-center items-center'>No Interest Found</p>}
           {paginatedInterests.map((item) => (
             <li key={item._id} className="flex text-lg mt-5 font-semibold items-center">
               <input

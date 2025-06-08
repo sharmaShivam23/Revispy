@@ -25,3 +25,7 @@ export const postCatgeory = {
 export const Interest = {
   INTEREST_API : `${BASE_URL}/user/interests`
 }
+
+export const DeleteAccount = {
+  DELETE_API : `${BASE_URL}/delete-account`
+}

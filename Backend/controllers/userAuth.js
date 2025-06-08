@@ -213,7 +213,7 @@ exports.login = async (req, res) => {
   try {
     const { Email, Password } = req.body;
 
-    // Check if email and password are provided
+  
     if (!Email || !Password) {
       return res.status(400).json({
         success: false,
@@ -222,7 +222,7 @@ exports.login = async (req, res) => {
     }
 
 
-    // Find the user by email
+    
     let user = await User.findOne({ Email });
     if (!user) {
       return res.status(404).json({
@@ -231,7 +231,7 @@ exports.login = async (req, res) => {
       });
     }
 
-    // Compare password with hashed password in the database
+    
     const isMatch = await bcrypt.compare(Password, user.Password);
     if (!isMatch) {
       return res.status(400).json({
@@ -240,28 +240,27 @@ exports.login = async (req, res) => {
       });
     }
 
-    // Payload for JWT
+  
     const payload = {
       id: user._id,
       Email: user.Email,
       Name: user.Name,
     };
 
-    // Create a JWT token
+    
     const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '2h' });
 
-    // Remove sensitive information (password) from the user object
     user = user.toObject()
     user.token = user
     user.Password = undefined;
 
-    // Set cookie options
+    
     const cookieOptions = {
-      expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000), // 3 days in milliseconds
+      expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000), 
       httpOnly: true,
     };
 
-    // Send cookie and response
+    
     return res.cookie('token', token, cookieOptions).status(200).json({
       success: true,
       message: "Login successful",
@@ -282,3 +281,41 @@ exports.login = async (req, res) => {
     });
   }
 };
+
+
+
+exports.deleteAccount = async(req,res) => {
+  try {
+    const {userId} = req.body;
+
+    if (!userId) {
+      return res.status(400).json({
+        success: false,
+        message: "User ID is required",
+      });
+    }
+
+    const user = await User.findByIdAndDelete(userId);
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    await OTP.deleteMany({ Email: user.Email }); 
+
+    return res.status(200).json({
+      success: true,
+      message: "Account deleted successfully",
+    });
+
+  } catch (error) {
+    console.error("Error during account deletion:", error.message);
+    return res.status(500).json({
+      success: false,
+      message: "Error deleting account. Please try again",
+      error: error.message,
+    });
+  }
+}
