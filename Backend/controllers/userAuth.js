@@ -11,7 +11,7 @@ const jwt = require('jsonwebtoken');
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, 
-  max: 10,
+  max: 3,
   message: {
     success: false,
     message: "Too many registration attempts. Please try again after an hour."
